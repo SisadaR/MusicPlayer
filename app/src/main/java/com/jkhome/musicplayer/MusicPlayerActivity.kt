@@ -71,13 +71,35 @@ class MusicPlayerActivity : AppCompatActivity() , ItemCLicked {
 
             if(currentPosition == 0)
             {
-                
+
             }
             else {
                 currentPosition--
                 play(currentPosition)
             }
         }
+
+        findViewById<SeekBar>(R.id.seek_bar).setOnSeekBarChangeListener(
+                object : SeekBar.OnSeekBarChangeListener {
+                    override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                        if(fromUser){
+                            mediaPlayer?.seekTo(progress * 1000)
+                            
+                        }
+                    }
+
+                    override fun onStartTrackingTouch(seekBar: SeekBar?) {
+
+                    }
+
+                    override fun onStopTrackingTouch(seekBar: SeekBar?) {
+
+                    }
+
+
+                }
+        )
+
     }
 
     private fun play(currentPosition: Int)
