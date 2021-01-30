@@ -50,6 +50,34 @@ class MusicPlayerActivity : AppCompatActivity() , ItemCLicked {
         findViewById<FloatingActionButton>(R.id.fab_play).setOnClickListener{
             play(currentPosition)
         }
+
+        findViewById<FloatingActionButton>(R.id.fab_next).setOnClickListener{
+            mediaPlayer!!.stop()
+            state = false
+
+            if(currentPosition == musicList.size - 1)
+            {
+
+            }
+            else {
+                currentPosition++
+                play(currentPosition)
+            }
+        }
+
+        findViewById<FloatingActionButton>(R.id.fab_previous).setOnClickListener{
+            mediaPlayer!!.stop()
+            state = false
+
+            if(currentPosition == 0)
+            {
+                
+            }
+            else {
+                currentPosition--
+                play(currentPosition)
+            }
+        }
     }
 
     private fun play(currentPosition: Int)
