@@ -5,7 +5,6 @@ import android.view.View
 import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.*
 
 class MusicAdapter (var musicList: MutableList<Music>) : Adapter<MusicAdapter.MusicViewHolder>() {
@@ -30,7 +29,7 @@ class MusicAdapter (var musicList: MutableList<Music>) : Adapter<MusicAdapter.Mu
         }
 
         override fun onClick(v: View?) {
-            TODO("Not yet implemented")
+
         }
 
     }
@@ -38,9 +37,9 @@ class MusicAdapter (var musicList: MutableList<Music>) : Adapter<MusicAdapter.Mu
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MusicViewHolder {
         val context = parent.context
         val inflater = LayoutInflater.from(context)
-        val shouldAttatch = false
+        val shouldAttach = false
 
-        val view = inflater.inflate(R.layout.music_item,parent, shouldAttatch)
+        val view = inflater.inflate(R.layout.music_item,parent, shouldAttach)
         return  MusicViewHolder(view)
 
 
@@ -53,6 +52,6 @@ class MusicAdapter (var musicList: MutableList<Music>) : Adapter<MusicAdapter.Mu
     }
 
     override fun getItemCount(): Int {
-        musicList.size
+        return musicList.size
     }
 }
