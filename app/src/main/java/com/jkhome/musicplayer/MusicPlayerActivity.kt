@@ -23,7 +23,7 @@ import com.CodeBoy.MediaFacer.mediaHolders.audioContent
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.lang.StringBuilder
 
-class MusicPlayerActivity : AppCompatActivity() {
+class MusicPlayerActivity : AppCompatActivity() , ItemCLicked {
 
     private var musicList: MutableList<Music> = mutableListOf()
     private lateinit var linearLayoutManager : LinearLayoutManager
@@ -118,7 +118,7 @@ class MusicPlayerActivity : AppCompatActivity() {
         cursor.close()
 
         linearLayoutManager = LinearLayoutManager(this)
-        adapter = MusicAdapter(musicList)
+        adapter = MusicAdapter(musicList,this)
         findViewById<RecyclerView>(R.id.recyclerView).layoutManager = linearLayoutManager
         findViewById<RecyclerView>(R.id.recyclerView).adapter = adapter
 
@@ -152,5 +152,12 @@ class MusicPlayerActivity : AppCompatActivity() {
             else ->   super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         }
 
+    }
+
+    override fun itemClicked(position: Int) {
+        state = false
+        mediaPlayer?.stop()
+        this.currentPosition = position
+        play(this.currentPosition)
     }
 }

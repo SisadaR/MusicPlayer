@@ -7,32 +7,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView.*
 
-class MusicAdapter (var musicList: MutableList<Music>) : Adapter<MusicAdapter.MusicViewHolder>() {
+class MusicAdapter (var musicList: MutableList<Music>, var itemCLicked: ItemCLicked) : Adapter<MusicAdapter.MusicViewHolder>() {
 
 
-    class MusicViewHolder(v:View): ViewHolder(v), OnClickListener{
-        private var view:View = v
-        private lateinit var music : Music
-        private var artisName : TextView
-        private var songName: TextView
-
-        init {
-            artisName = view.findViewById(R.id.artist_text_view)
-            songName = view.findViewById(R.id.song_test_view)
-            view.setOnClickListener(this)
-        }
-
-        fun bindMusic(music:Music){
-            this.music = music
-            artisName.text = music.artistName
-            songName.text = music.songName
-        }
-
-        override fun onClick(v: View?) {
-
-        }
-
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MusicViewHolder {
         val context = parent.context
@@ -53,5 +30,31 @@ class MusicAdapter (var musicList: MutableList<Music>) : Adapter<MusicAdapter.Mu
 
     override fun getItemCount(): Int {
         return musicList.size
+    }
+
+
+
+    inner class MusicViewHolder(v:View): ViewHolder(v), OnClickListener{
+        private var view:View = v
+        private lateinit var music : Music
+        private var artisName : TextView
+        private var songName: TextView
+
+        init {
+            artisName = view.findViewById(R.id.artist_text_view)
+            songName = view.findViewById(R.id.song_test_view)
+            view.setOnClickListener(this)
+        }
+
+        fun bindMusic(music:Music){
+            this.music = music
+            artisName.text = music.artistName
+            songName.text = music.songName
+        }
+
+        override fun onClick(v: View?) {
+            itemCLicked.itemClicked(adapterPosition)
+        }
+
     }
 }
